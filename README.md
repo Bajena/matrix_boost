@@ -1,5 +1,7 @@
 # MatrixBoost
 
+[![Build Status](https://travis-ci.com/Bajena/matrix_boost.svg?branch=master)](https://travis-ci.com/Bajena/matrix_boost)
+
 This gem showcases usage of Ruby C extensions by reimplementing operations
 from Ruby's [https://ruby-doc.org/stdlib-2.5.1/libdoc/matrix/rdoc/Matrix.html](Matrix) library.
 
