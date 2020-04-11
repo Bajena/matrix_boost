@@ -96,36 +96,24 @@ Matrix* rb_array_to_matrix(VALUE a) {
 }
 
 static VALUE mul_matrix(VALUE self, VALUE m1, VALUE m2) {
-  print_obj(m1);
-  print_obj(m2);
-
   Check_Type(m1, T_ARRAY);
   Check_Type(m2, T_ARRAY);
 
   Matrix *m1c = rb_array_to_matrix(m1);
   Matrix *m2c = rb_array_to_matrix(m2);
 
-  print(m1c);
-  print(m2c);
+  Matrix *multiplied = multiply(m1c, m2c);
 
-  Matrix *multiplied = multiply(m1c, transpose(m2c));
-
-  printf("Multiplied: (%d, %d): %ld\n", multiplied->rows, multiplied->columns, multiplied->numbers[0][0]);
-  // print(multiplied);
+  destroy_matrix(m1c);
+  destroy_matrix(m2c);
 
   if (multiplied) {
-    return matrix_to_rb_array(multiplied);
+    VALUE result = matrix_to_rb_array(multiplied);
+    destroy_matrix(multiplied);
+    return result;
   } else {
     return Qnil;
   }
-
-  // VALUE result = matrix_to_rb_array(m1c);
-
-  // destroy_matrix(m1c);
-  // xfree(m2c);
-  // xfree(multiplied);
-
-  return Qnil;
 }
 
 void Init_extension(void) {

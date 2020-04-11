@@ -276,7 +276,6 @@ static double vector_multiply(double *col, double *row, int length){
   unsigned int i;
   sum = 0;
   for(i = 0; i < length; i++){
-    printf("%f * %f\n", col[i], row[i]);
     sum += col[i] * row[i];
   }
   return sum;
