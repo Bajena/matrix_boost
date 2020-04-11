@@ -117,8 +117,8 @@ static VALUE mul_matrix(VALUE self, VALUE m1, VALUE m2) {
 }
 
 void Init_extension(void) {
-  VALUE CFromRubyExample = rb_define_module("CFromRubyExample");
-  VALUE NativeHelpers = rb_define_class_under(CFromRubyExample, "NativeHelpers", rb_cObject);
+  VALUE MatrixBoost = rb_define_module("MatrixBoost");
+  VALUE NativeHelpers = rb_define_class_under(MatrixBoost, "NativeHelpers", rb_cObject);
 
   rb_define_singleton_method(NativeHelpers, "string", string, 1);
   rb_define_singleton_method(NativeHelpers, "number", number, 1);

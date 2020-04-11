@@ -1,9 +1,9 @@
 require "extension"
-require "c_from_ruby_example/version"
+require "matrix_boost/version"
 require "matrix"
-require 'benchmark'
+require "benchmark"
 
-module CFromRubyExample
+module MatrixBoost
   class << self
     def multiply(m1, m2)
       Matrix[*NativeHelpers.mul_matrix(m1.to_a, m2.to_a)]

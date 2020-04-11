@@ -1,15 +1,14 @@
-
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "c_from_ruby_example/version"
+require "matrix_boost/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "c_from_ruby_example"
-  spec.version       = CFromRubyExample::VERSION
-  spec.authors       = ["Thijs Cadier"]
-  spec.email         = ["thijs@appsignal.com"]
+  spec.name          = "matrix_boost"
+  spec.version       = MatrixBoost::VERSION
+  spec.authors       = ["Jan Bajena"]
+  spec.email         = ["dev@mail.com"]
 
-  spec.summary       = "C extension example gem"
+  spec.summary       = "C extension show case"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.

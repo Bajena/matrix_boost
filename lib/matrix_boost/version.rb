@@ -1,3 +1,3 @@
-module CFromRubyExample
+module MatrixBoost
   VERSION = "0.1.0"
 end
