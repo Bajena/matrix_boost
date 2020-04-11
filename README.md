@@ -16,15 +16,15 @@ implemented in a C extension 🎉.
 
 ### How do I play around?
 
- ```bash
- $ bin/setup
- $ bin/rake compile
- ```
+```bash
+$ bin/setup
+$ bin/rake compile
+```
 
 And then run this play around:
 
- ```bash
-`$ bin/console
+```bash
+$ bin/console
 ```
 
 ```bash
