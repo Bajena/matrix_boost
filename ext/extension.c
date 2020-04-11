@@ -67,7 +67,7 @@ VALUE matrix_to_rb_array(Matrix *matrix) {
     VALUE rb_row = rb_ary_new();
     rb_ary_push(result, rb_row);
     for (column = 0; column < matrix->columns; column++) {
-      rb_ary_push(rb_row, DBL2NUM((matrix->numbers)[row][column]));
+      rb_ary_push(rb_row, DBL2NUM((matrix->numbers)[column][row]));
     }
   }
 

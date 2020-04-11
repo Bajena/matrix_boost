@@ -30,10 +30,10 @@ And then run this play around:
 ```bash
 irb(main):001:0> m1 = Matrix[[1, 2, 3], [4, 5, 6]]
 => Matrix[[1, 2, 3], [4, 5, 6]]
-irb(main):002:0> m2 = Matrix[[9,8],[7,6],[5,4]]
+irb(main):002:0> m2 = Matrix[[9, 8],[7, 6],[5, 4]]
 => Matrix[[9, 8], [7, 6], [5, 4]]
 irb(main):003:0> MatrixBoost.multiply(m1, m2)
-=> Matrix[[38.0, 101.0], [32.0, 86.0]]
+=> Matrix[[38.0, 32.0], [101.0, 86.0]]
 ```
 
 Or run the tests:
