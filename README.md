@@ -5,16 +5,25 @@
 This gem showcases usage of Ruby C extensions by reimplementing operations
 from Ruby's [https://ruby-doc.org/stdlib-2.5.1/libdoc/matrix/rdoc/Matrix.html](Matrix) library.
 
+### Performance comparison
+
 ```bash
-irb(main):007:0> MatrixBoost.test_it(dim: 3, n: 10000000)
-                           user     system      total        real
-Ruby Matrix multiply: 76.065556   0.161843  76.227399 ( 76.378641)
-MatrixBoost multiply: 45.243661   0.112737  45.356398 ( 45.474884)
+irb(main):007:0> MatrixBoost.benchmark(dim: 3, n: 10000000)
+                                                    user     system      total        real
+Ruby matrix multiply:                          81.385777   0.190162  81.575939 ( 81.751942)
+C matrix multiply:                             47.041961   0.081723  47.123684 ( 47.206611)
+Ruby matrix multiply after monkey patch:       50.903808   0.222949  51.126757 ( 51.351058
 ```
 
 as you can see Ruby's Matrix implementation is ~67% slower than the same operation
 implemented in a C extension 🎉.
 
+### Matrix class core extension
+Even though this gem was created mainly for learning how to use C extensions in Ruby
+you should still be able to use it in your production code.
+
+You can either use `MatrixBoost.multiply(m1, m2)` or replace the original methods
+from `Matrix` by calling `MatrixBoost.apply_core_extensions`.
 
 ### How do I play around?
 
