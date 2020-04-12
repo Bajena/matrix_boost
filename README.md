@@ -22,7 +22,9 @@ implemented in a C extension 🎉.
 Even though this gem was created mainly for learning how to use C extensions in Ruby
 you should still be able to use it in your production code.
 
-You can either use `MatrixBoost.multiply(m1, m2)` or replace the original methods
+You can install the gem by adding `gem "matrix_boost"` to your gemfile.
+
+Then you can either use `MatrixBoost.multiply(m1, m2)` or replace the original methods
 from `Matrix` by calling `MatrixBoost.apply_core_extensions`.
 
 ### How do I play around?
