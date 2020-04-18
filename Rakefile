@@ -1,6 +1,6 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
-require "matrix_boost"
+require "matrix_boost/version"
 require "github_changelog_generator/task"
 
 Rake::TestTask.new(:test) do |t|
@@ -18,8 +18,10 @@ task :compile do
 end
 
 task :benchmark_multiply do
+  require "matrix_boost"
+
   dim = 4
-  n = 1000000
+  n = 10000
 
   m1 = Matrix.build(dim) { rand }
   m2 = Matrix.build(dim) { rand }
@@ -41,8 +43,10 @@ task :benchmark_multiply do
 end
 
 task :benchmark_inverse do
+  require "matrix_boost"
+
   dim = 4
-  n = 1000000
+  n = 10000
 
   puts "Benchmark inversion (dim = #{dim}, n = #{n})..."
 
