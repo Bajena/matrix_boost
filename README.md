@@ -8,14 +8,25 @@ from Ruby's [https://ruby-doc.org/stdlib-2.5.1/libdoc/matrix/rdoc/Matrix.html](M
 ### Performance comparison
 
 ```bash
-irb(main):007:0> MatrixBoost.benchmark(dim: 3, n: 10000000)
+→ bin/rake benchmark_multiply; bin/rake benchmark_inverse
+Benchmark multiplication (dim = 4, n = 1000000)...
                                                     user     system      total        real
-Ruby matrix multiply:                          81.385777   0.190162  81.575939 ( 81.751942)
-C matrix multiply:                             47.041961   0.081723  47.123684 ( 47.206611)
-Ruby matrix multiply after monkey patch:       50.903808   0.222949  51.126757 ( 51.351058
+Ruby matrix multiply:                          22.627594   0.180447  22.808041 ( 23.473300)
+C matrix multiply:                             12.393963   0.124988  12.518951 ( 13.102763)
+Ruby matrix multiply after monkey patch:       11.493074   0.073740  11.566814 ( 11.645836)
+>Ruby slower (%):                               1.825695   1.443715        NaN (  1.791477)
+
+Benchmark inversion (dim = 4, n = 1000000)...
+                                                    user     system      total        real
+Ruby matrix inverse:                           26.191386   0.067096  26.258482 ( 26.328944)
+C matrix inverse:                               4.911581   0.005300   4.916881 (  4.920316)
+Ruby matrix inverse after monkey patch:         5.180995   0.003944   5.184939 (  5.187873)
+>Ruby slower (%):                               5.332577  12.659623        NaN (  5.351068)
 ```
 
-as you can see Ruby's Matrix implementation is ~67% slower than the same operation
+- Ruby's multiplication of 4-dimensional martices is **~79%** slower than the same operation
+implemented in a C extension 🎉.
+- Ruby's inversion of 4-dimensional matrices is **~435%** slower than the same operation
 implemented in a C extension 🎉.
 
 ### Matrix class core extension
@@ -24,7 +35,7 @@ you should still be able to use it in your production code.
 
 You can install the gem by adding `gem "matrix_boost"` to your gemfile.
 
-Then you can either use `MatrixBoost.multiply(m1, m2)` or replace the original methods
+Then you can either use `MatrixBoost.multiply(m1, m2)` or `MatrixBoost.invert(m)` or replace the original methods
 from `Matrix` by calling `MatrixBoost.apply_core_extensions`.
 
 ### How do I play around?
