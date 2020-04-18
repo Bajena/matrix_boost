@@ -21,10 +21,10 @@ rows    |
 the matrix is an array of array pointers where each array pointer corresponds to a vector
 */
 
-static double vector_multiply(double *col, double *row, int length);
+static double matrix_vector_multiply(double *col, double *row, int length);
 
 /* make a zero matrix of given dimensions */
-Matrix *constructor(int r, int c){
+Matrix *matrix_constructor(int r, int c){
   unsigned int i;
   Matrix *m;
   if(r <= 0 || c <= 0){
@@ -41,7 +41,7 @@ Matrix *constructor(int r, int c){
 }
 
 /* free memory associated with the matrix  */
-int destroy_matrix(Matrix *m){
+int matrix_destroy(Matrix *m){
   unsigned int i;
   if(m == NULL)
     return FAIL;
@@ -53,7 +53,7 @@ int destroy_matrix(Matrix *m){
 }
 
 /* print the matrix  */
-int print(Matrix *m){
+int matrix_print(Matrix *m){
   unsigned int i, j;
   if(m == NULL)
     return FAIL;
@@ -66,12 +66,12 @@ int print(Matrix *m){
   return SUCC;
 }
 
-Matrix *transpose(Matrix *m){
+Matrix *matrix_transpose(Matrix *m){
   Matrix *trans;
   unsigned int i, j;
   if(m == NULL)
     return NULL;
-  trans = constructor(m->columns, m->rows);
+  trans = matrix_constructor(m->columns, m->rows);
   for(i = 0; i < trans->columns; i++){
     for(j = 0; j < trans->rows; j++)
       trans->numbers[i][j] = m->numbers[j][i];
@@ -80,26 +80,26 @@ Matrix *transpose(Matrix *m){
 }
 
 /* m1 x m2  */
-Matrix *multiply(Matrix *m1, Matrix *m2){
+Matrix *matrix_multiply(Matrix *m1, Matrix *m2){
   Matrix *product, *trans;
   unsigned int i, j;
   if(m1 == NULL || m2 == NULL)
     return NULL;
   if(m1->columns != m2->rows)
     return NULL;
-  trans = transpose(m1);
-  product = constructor(m1->rows, m2->columns);
+  trans = matrix_transpose(m1);
+  product = matrix_constructor(m1->rows, m2->columns);
   for(i = 0; i < product->columns; i++){
     for(j = 0; j < product->rows; j++){
-      product->numbers[i][j] = vector_multiply(trans->numbers[j], m2->numbers[i], m2->rows);
+      product->numbers[i][j] = matrix_vector_multiply(trans->numbers[j], m2->numbers[i], m2->rows);
     }
   }
-  destroy_matrix(trans);
+  matrix_destroy(trans);
   return product;
 }
 
 /* v1 x v2  -- simply a helper function -- computes dot product between two vectors*/
-static double vector_multiply(double *col, double *row, int length){
+static double matrix_vector_multiply(double *col, double *row, int length){
   double sum;
   unsigned int i;
   sum = 0;

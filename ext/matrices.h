@@ -11,11 +11,11 @@ typedef struct Matrix{
   double **numbers;
 } Matrix;
 
-Matrix *constructor(int r, int c);
-int destroy_matrix(Matrix *m);
-int print(Matrix *m);
-Matrix *transpose(Matrix *m);
-Matrix *multiply(Matrix *m1, Matrix *m2);
+Matrix *matrix_constructor(int r, int c);
+int matrix_destroy(Matrix *m);
+int matrix_print(Matrix *m);
+Matrix *matrix_transpose(Matrix *m);
+Matrix *matrix_multiply(Matrix *m1, Matrix *m2);
 
 #ifdef __cplusplus
 }

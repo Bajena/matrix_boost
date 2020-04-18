@@ -29,7 +29,7 @@ Matrix* rb_array_to_matrix(VALUE a) {
   Check_Type(first_row, T_ARRAY);
   long columns = RARRAY_LEN(first_row);
 
-  Matrix *matrix = constructor(rows, columns);
+  Matrix *matrix = matrix_constructor(rows, columns);
   int row;
   int column;
 
@@ -51,14 +51,14 @@ static VALUE mul_matrix(VALUE self, VALUE m1, VALUE m2) {
   Matrix *m1c = rb_array_to_matrix(m1);
   Matrix *m2c = rb_array_to_matrix(m2);
 
-  Matrix *multiplied = multiply(m1c, m2c);
+  Matrix *multiplied = matrix_multiply(m1c, m2c);
 
-  destroy_matrix(m1c);
-  destroy_matrix(m2c);
+  matrix_destroy(m1c);
+  matrix_destroy(m2c);
 
   if (multiplied) {
     VALUE result = matrix_to_rb_array(multiplied);
-    destroy_matrix(multiplied);
+    matrix_destroy(multiplied);
     return result;
   } else {
     return Qnil;
