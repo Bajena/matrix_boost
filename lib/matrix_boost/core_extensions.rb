@@ -15,5 +15,14 @@ module MatrixBoost
         end
       end
     end
+
+    module Inverse
+      # Overrides https://github.com/ruby/matrix/blob/master/lib/matrix.rb#L1175
+      def inverse
+        raise ErrDimensionMismatch unless square?
+
+        MatrixBoost.invert(self)
+      end
+    end
   end
 end

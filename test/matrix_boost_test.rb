@@ -7,4 +7,10 @@ class MatrixBoostTest < Minitest::Test
 
     assert_equal MatrixBoost.multiply(m1, m2), m1 * m2
   end
+
+  def test_inverse
+    m = Matrix.build(3) { rand }
+
+    assert_equal MatrixBoost.invert(m).round(4), m.inverse.round(4)
+  end
 end

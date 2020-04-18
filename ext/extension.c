@@ -65,8 +65,26 @@ static VALUE mul_matrix(VALUE self, VALUE m1, VALUE m2) {
   }
 }
 
+static VALUE inv_matrix(VALUE self, VALUE m) {
+  Check_Type(m, T_ARRAY);
+
+  Matrix *mc = rb_array_to_matrix(m);
+  Matrix *inverted = matrix_invert(mc);
+
+  matrix_destroy(mc);
+
+  if (inverted) {
+    VALUE result = matrix_to_rb_array(inverted);
+    matrix_destroy(inverted);
+    return result;
+  } else {
+    return Qnil;
+  }
+}
+
 void Init_extension(void) {
   VALUE MatrixBoost = rb_define_module("MatrixBoost");
   VALUE NativeHelpers = rb_define_class_under(MatrixBoost, "NativeHelpers", rb_cObject);
   rb_define_singleton_method(NativeHelpers, "mul_matrix", mul_matrix, 2);
+  rb_define_singleton_method(NativeHelpers, "inv_matrix", inv_matrix, 1);
 }
