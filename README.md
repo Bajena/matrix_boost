@@ -8,20 +8,25 @@ from Ruby's [https://ruby-doc.org/stdlib-2.5.1/libdoc/matrix/rdoc/Matrix.html](M
 ### Performance comparison
 
 ```bash
-→ bin/rake benchmark_inverse benchmark_multiply
+→ bin/rake benchmark_multiply; bin/rake benchmark_inverse
+Benchmark multiplication (dim = 4, n = 1000000)...
                                                     user     system      total        real
-Ruby matrix inverse:                          137.841586   0.227272 138.068858 (138.278252)
-C matrix inverse:                              40.402431   0.054922  40.457353 ( 40.506431)
-Ruby matrix inverse after monkey patch:        42.565993   0.053962  42.619955 ( 42.662933)
->Ruby slower (%):                               3.411715   4.138087        NaN (  3.413736)
+Ruby matrix multiply:                          22.627594   0.180447  22.808041 ( 23.473300)
+C matrix multiply:                             12.393963   0.124988  12.518951 ( 13.102763)
+Ruby matrix multiply after monkey patch:       11.493074   0.073740  11.566814 ( 11.645836)
+>Ruby slower (%):                               1.825695   1.443715        NaN (  1.791477)
+
+Benchmark inversion (dim = 4, n = 1000000)...
                                                     user     system      total        real
-Ruby matrix multiply:                          62.837057   0.077940  62.914997 ( 62.985346)
-C matrix multiply:                             61.969643   0.078727  62.048370 ( 62.111846)
-Ruby matrix multiply after monkey patch:       63.094235   0.077695  63.171930 ( 63.234440)
->Ruby slower (%):                               1.013997   0.990003        NaN (  1.014063)
+Ruby matrix inverse:                           26.191386   0.067096  26.258482 ( 26.328944)
+C matrix inverse:                               4.911581   0.005300   4.916881 (  4.920316)
+Ruby matrix inverse after monkey patch:         5.180995   0.003944   5.184939 (  5.187873)
+>Ruby slower (%):                               5.332577  12.659623        NaN (  5.351068)
 ```
 
-as you can see Ruby's Matrix implementation is ~67% slower than the same operation
+- Ruby's multiplication of 4-dimensional martices is **~79%** slower than the same operation
+implemented in a C extension 🎉.
+- Ruby's inversion of 4-dimensional matrices is **~435%** slower than the same operation
 implemented in a C extension 🎉.
 
 ### Matrix class core extension

@@ -18,11 +18,13 @@ task :compile do
 end
 
 task :benchmark_multiply do
-  dim = 3
-  n = 10000000
+  dim = 4
+  n = 1000000
 
   m1 = Matrix.build(dim) { rand }
   m2 = Matrix.build(dim) { rand }
+
+  puts "Benchmark multiplication (dim = #{dim}, n = #{n})..."
 
   Benchmark.benchmark(Benchmark::CAPTION, 45, Benchmark::FORMAT, ">Ruby slower (%):") do |x|
     r = x.report("Ruby matrix multiply:") { n.times { m1 * m2 } }
@@ -33,11 +35,16 @@ task :benchmark_multiply do
 
     [r / c]
   end
+
+  puts "Done"
+  puts ""
 end
 
 task :benchmark_inverse do
-  dim = 3
-  n = 10000000
+  dim = 4
+  n = 1000000
+
+  puts "Benchmark inversion (dim = #{dim}, n = #{n})..."
 
   m = Matrix.build(dim) { rand }
 
@@ -50,6 +57,9 @@ task :benchmark_inverse do
 
     [r / c]
   end
+
+  puts "Done"
+  puts ""
 end
 
 GitHubChangelogGenerator::RakeTask.new :changelog do |config|
