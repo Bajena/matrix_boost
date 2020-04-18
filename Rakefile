@@ -18,36 +18,37 @@ task :compile do
 end
 
 task :benchmark_multiply do
-  dim = 4
-  n = 100000
-
-  m1 = Matrix[[1, 2, 3], [4, 5, 6]]
-  m2 = Matrix[[9,8],[7,6],[5,4]]
+  dim = 3
+  n = 10000000
 
   m1 = Matrix.build(dim) { rand }
   m2 = Matrix.build(dim) { rand }
 
-  Benchmark.benchmark(Benchmark::CAPTION, 45, Benchmark::FORMAT) do |x|
-    x.report("Ruby matrix multiply:") { n.times { m1 * m2 } }
-    x.report("C matrix multiply:") { n.times { MatrixBoost.multiply(m1, m2) } }
+  Benchmark.benchmark(Benchmark::CAPTION, 45, Benchmark::FORMAT, ">Ruby slower (%):") do |x|
+    r = x.report("Ruby matrix multiply:") { n.times { m1 * m2 } }
+    c = x.report("C matrix multiply:") { n.times { MatrixBoost.multiply(m1, m2) } }
 
     MatrixBoost.apply_core_extensions
     x.report("Ruby matrix multiply after monkey patch:") { n.times { m1 * m2 } }
+
+    [r / c]
   end
 end
 
 task :benchmark_inverse do
-  dim = 4
-  n = 100000
+  dim = 3
+  n = 10000000
 
   m = Matrix.build(dim) { rand }
 
-  Benchmark.benchmark(Benchmark::CAPTION, 45, Benchmark::FORMAT) do |x|
-    x.report("Ruby matrix inverse:") { n.times { m.inverse } }
-    x.report("C matrix inverse:") { n.times { MatrixBoost.invert(m) } }
+  Benchmark.benchmark(Benchmark::CAPTION, 45, Benchmark::FORMAT, ">Ruby slower (%):") do |x|
+    r = x.report("Ruby matrix inverse:") { n.times { m.inverse } }
+    c = x.report("C matrix inverse:") { n.times { MatrixBoost.invert(m) } }
 
     MatrixBoost.apply_core_extensions
     x.report("Ruby matrix inverse after monkey patch:") { n.times { m.inverse } }
+
+    [r / c]
   end
 end
 

@@ -8,11 +8,17 @@ from Ruby's [https://ruby-doc.org/stdlib-2.5.1/libdoc/matrix/rdoc/Matrix.html](M
 ### Performance comparison
 
 ```bash
-irb(main):007:0> MatrixBoost.benchmark(dim: 3, n: 10000000)
+→ bin/rake benchmark_inverse benchmark_multiply
                                                     user     system      total        real
-Ruby matrix multiply:                          81.385777   0.190162  81.575939 ( 81.751942)
-C matrix multiply:                             47.041961   0.081723  47.123684 ( 47.206611)
-Ruby matrix multiply after monkey patch:       50.903808   0.222949  51.126757 ( 51.351058
+Ruby matrix inverse:                          137.841586   0.227272 138.068858 (138.278252)
+C matrix inverse:                              40.402431   0.054922  40.457353 ( 40.506431)
+Ruby matrix inverse after monkey patch:        42.565993   0.053962  42.619955 ( 42.662933)
+>Ruby slower (%):                               3.411715   4.138087        NaN (  3.413736)
+                                                    user     system      total        real
+Ruby matrix multiply:                          62.837057   0.077940  62.914997 ( 62.985346)
+C matrix multiply:                             61.969643   0.078727  62.048370 ( 62.111846)
+Ruby matrix multiply after monkey patch:       63.094235   0.077695  63.171930 ( 63.234440)
+>Ruby slower (%):                               1.013997   0.990003        NaN (  1.014063)
 ```
 
 as you can see Ruby's Matrix implementation is ~67% slower than the same operation
@@ -24,7 +30,7 @@ you should still be able to use it in your production code.
 
 You can install the gem by adding `gem "matrix_boost"` to your gemfile.
 
-Then you can either use `MatrixBoost.multiply(m1, m2)` or replace the original methods
+Then you can either use `MatrixBoost.multiply(m1, m2)` or `MatrixBoost.invert(m)` or replace the original methods
 from `Matrix` by calling `MatrixBoost.apply_core_extensions`.
 
 ### How do I play around?
