@@ -1,4 +1,4 @@
-require "extension"
+require "matrix_boost/extension"
 require "matrix"
 require "benchmark"
 

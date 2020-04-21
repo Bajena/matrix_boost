@@ -11,9 +11,9 @@ end
 
 task :compile do
   puts "Compiling extension"
-  `cd ext && make clean`
-  `cd ext && ruby extconf.rb`
-  `cd ext && make`
+  `cd ext/matrix_boost && make clean`
+  `cd ext/matrix_boost && ruby extconf.rb`
+  `cd ext/matrix_boost && make`
   puts "Done"
 end
 

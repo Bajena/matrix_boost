@@ -7,7 +7,7 @@
 /spec/reports/
 /tmp/
 Gemfile.lock
-ext/*.o
-ext/*.bundle
-ext/Makefile
+ext/**/*.o
+ext/**/*.bundle
+ext/**/Makefile
 *.gem
