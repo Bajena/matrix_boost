@@ -1,5 +1,4 @@
 #include "ruby/ruby.h"
-#include "ruby/encoding.h"
 #include "matrices.h"
 
 void print_obj(VALUE o) {
