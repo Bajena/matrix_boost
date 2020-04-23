@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.2.2](https://github.com/Bajena/matrix_boost/tree/v0.2.2) (2020-04-23)
+
+[Full Changelog](https://github.com/Bajena/matrix_boost/compare/v0.2.1...v0.2.2)
+
+**Merged pull requests:**
+
+- Add missing extension.bundle file [\#3](https://github.com/Bajena/matrix_boost/pull/3) ([Bajena](https://github.com/Bajena))
+
+## [v0.2.1](https://github.com/Bajena/matrix_boost/tree/v0.2.1) (2020-04-23)
+
+[Full Changelog](https://github.com/Bajena/matrix_boost/compare/v0.2.0...v0.2.1)
+
 ## [v0.2.0](https://github.com/Bajena/matrix_boost/tree/v0.2.0) (2020-04-18)
 
 [Full Changelog](https://github.com/Bajena/matrix_boost/compare/v0.1.1...v0.2.0)
