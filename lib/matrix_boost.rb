@@ -1,6 +1,5 @@
 require "matrix_boost/extension"
 require "matrix"
-require "benchmark"
 
 module MatrixBoost
   class << self

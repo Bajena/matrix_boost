@@ -19,6 +19,7 @@ end
 
 task :benchmark_multiply do
   require "matrix_boost"
+  require "benchmark"
 
   dim = 4
   n = 10000
